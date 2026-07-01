@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雅丽洁「水感美白防晒乳」· AIGC 概念短片演示</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5/300.css');
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5/500.css');
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5/600.css');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #08080a;
+    --bg2:     #0d0d10;
+    --card:    #141418;
+    --border:  #232328;
+    --border2: #2e2e35;
+    --gold:    #c9a96a;
+    --gold-dim:#9a824f;
+    --red:     #7a3b3b;
+    --text:    #ece7dd;
+    --text-dim:#a09a8f;
+    --muted:   #65605a;
+    --faint:   #3a3631;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+    font-weight: 300; line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--gold); color: #08080a; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 999; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    opacity: .5;
+  }
+
+  /* ============ HERO ============ */
+  .hero { min-height: 78vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 75% 30%, rgba(122,59,59,.16), transparent 65%),
+      radial-gradient(ellipse 50% 70% at 15% 80%, rgba(201,169,106,.06), transparent 60%),
+      linear-gradient(165deg, #0c0a0b 0%, #08080a 45%, #0a0a0d 100%);
+  }
+  .hero::before, .hero::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 36px; z-index: 3;
+    background: #000; opacity: .55;
+  }
+  .hero::before { top: 0; } .hero::after { bottom: 0; }
+
+  .hero-inner { position: relative; z-index: 2; padding: 90px 56px 60px; width: 100%; max-width: 1200px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 26px; display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+  .hero h1 { font-size: clamp(32px, 5.2vw, 58px); font-weight: 300; line-height: 1.2; letter-spacing: -.005em; color: var(--text); margin-bottom: 22px; }
+  .hero h1 em { font-style: normal; font-weight: 600; color: var(--gold); }
+  .hero-tagline { font-size: 15px; color: var(--text-dim); max-width: 680px; line-height: 1.95; margin-bottom: 40px; }
+
+  .hero-metrics { display: flex; gap: 44px; flex-wrap: wrap; }
+  .hmetric { display: flex; flex-direction: column; gap: 6px; }
+  .hm-num { font-size: clamp(26px, 3.2vw, 36px); font-weight: 400; line-height: 1; color: var(--gold); }
+  .hm-num i { font-style: normal; font-size: .55em; color: var(--gold-dim); }
+  .hm-label { font-size: 11.5px; letter-spacing: .08em; color: var(--text-dim); }
+
+  /* ============ SECTION FRAME ============ */
+  section { position: relative; }
+  .sec-pad { padding: 90px 56px; max-width: 1200px; margin: 0 auto; }
+  .sec-head { display: flex; align-items: baseline; gap: 24px; margin-bottom: 56px; }
+  .sec-index { font-size: 13px; letter-spacing: .2em; color: var(--gold); font-weight: 400; }
+  .sec-title { font-size: clamp(24px, 3.6vw, 38px); font-weight: 300; color: var(--text); letter-spacing: .01em; }
+  .sec-rule { flex: 1; height: 1px; background: linear-gradient(to right, var(--border2), transparent); margin-left: 16px; align-self: center; }
+
+  /* ============ CONCEPT ============ */
+  .concept { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .concept-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 70px; align-items: start; }
+  .concept-lead { font-size: clamp(18px, 2.2vw, 22px); font-weight: 300; line-height: 1.75; color: var(--text); margin-bottom: 30px; }
+  .concept-lead em { font-style: normal; color: var(--gold); }
+  .concept-body p { font-size: 14.5px; color: var(--text-dim); line-height: 1.95; margin-bottom: 16px; }
+  .concept-body strong { color: var(--text); font-weight: 400; }
+  .concept-side { border-left: 1px solid var(--border); padding-left: 40px; }
+  .ps-block { margin-bottom: 26px; }
+  .ps-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .ps-items { font-size: 13.5px; color: var(--text-dim); line-height: 1.85; }
+  .ps-divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* ============ STORYBOARD ============ */
+  .storyboard { background: var(--bg); }
+  .sb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .sb-card { background: var(--bg); padding: 0; display: flex; flex-direction: column; transition: background .3s; }
+  .sb-card:hover { background: var(--card); }
+  .sb-visual {
+    position: relative; aspect-ratio: 9/16; overflow: hidden;
+    background: linear-gradient(150deg, #141418, #18130f);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  }
+  .sb-visual.wide { aspect-ratio: 16/9; }
+  .sb-visual::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(110deg, transparent 30%, rgba(201,169,106,.08) 50%, transparent 70%);
+    background-size: 200% 100%; opacity: 0; transition: opacity .4s;
+  }
+  .sb-card:hover .sb-visual::after { opacity: 1; animation: shimmer 1.6s ease-in-out infinite; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .sb-num { font-size: 42px; font-weight: 300; color: var(--red); line-height: 1; opacity: .85; }
+  .sb-kind { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+  .sb-kind.t2v { color: var(--gold-dim); }
+  .sb-kind.i2v { color: var(--gold-dim); }
+
+  .sb-body { padding: 22px 24px 26px; border-top: 1px solid var(--border); flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .sb-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .sb-name { font-size: 14px; color: var(--text); letter-spacing: .02em; }
+  .sb-dur { font-size: 11px; letter-spacing: .08em; color: var(--gold); border: 1px solid var(--border2); padding: 3px 9px; white-space: nowrap; }
+  .sb-badge { display: inline-flex; align-self: flex-start; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--border2); padding: 3px 10px; }
+  .sb-cn { font-size: 13px; color: var(--text-dim); line-height: 1.85; }
+  .sb-en { font-size: 12px; color: var(--muted); line-height: 1.75; font-style: italic; }
+
+  /* ============ PIPELINE ============ */
+  .pipeline { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .pipe-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 56px; }
+  .pipe-step { background: var(--bg); padding: 34px 30px; }
+  .pipe-step:hover { background: var(--card); }
+  .pipe-num { font-size: 12px; letter-spacing: .15em; color: var(--gold-dim); margin-bottom: 14px; }
+  .pipe-title { font-size: 16px; font-weight: 400; color: var(--text); margin-bottom: 10px; }
+  .pipe-desc { font-size: 13px; color: var(--text-dim); line-height: 1.8; }
+  .pipe-note { font-size: 13.5px; color: var(--text-dim); line-height: 1.9; max-width: 820px; }
+  .pipe-note code { color: var(--gold); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95em; }
+  .pipe-note strong { color: var(--text); font-weight: 400; }
+
+  footer {
+    padding: 28px 56px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    font-size: 12px; color: var(--muted); letter-spacing: .03em; max-width: 1200px; margin: 0 auto;
+  }
+
+  @media (max-width: 860px) {
+    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+    .concept-side { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 30px; }
+    .pipe-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .sec-pad, .hero-inner { padding-left: 24px; padding-right: 24px; }
+    .pipe-grid { grid-template-columns: 1fr; }
+    footer { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AIGC CONCEPT FILM · DEMO</div>
+    <h1>雅丽洁「水感美白防晒乳」<br><em>AIGC 概念短片</em> 分镜演示</h1>
+    <p class="hero-tagline">
+      这是一支完全由 AI 生成分镜构思、并计划通过 xAI Grok Imagine 逐镜头生成的竖屏短片提案。
+      本页展示 8 个镜头的完整分镜脚本（中英文 Prompt、镜头类型、时长），
+      对应的一键生成脚本见 <span class="serif" style="color:var(--gold)">generate_video.py</span>。
+    </p>
+    <div class="hero-metrics">
+      <div class="hmetric"><div class="hm-num">8<i>个</i></div><div class="hm-label">分镜镜头</div></div>
+      <div class="hmetric"><div class="hm-num">30<i>s</i></div><div class="hm-label">成片时长</div></div>
+      <div class="hmetric"><div class="hm-num">9:16</div><div class="hm-label">竖屏比例</div></div>
+      <div class="hmetric"><div class="hm-num">6<i>镜</i></div><div class="hm-label">走 Grok Imagine API</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="concept">
+  <div class="sec-pad">
+    <div class="sec-head"><span class="sec-index">01</span><span class="sec-title">创意概念</span><span class="sec-rule"></span></div>
+    <div class="concept-grid">
+      <div>
+        <p class="concept-lead">一个 <em>「早上多睡 2 分钟」</em>的都市女生晨间故事，<br>把防晒乳的使用场景压缩进一次真实的出门流程里。</p>
+        <div class="concept-body">
+          <p>短片以<strong>「7:50 闹钟 → 7:52 出门」</strong>的时间线为结构骨架：起床、开瓶、上妆式涂抹、成膜、转身出门，
+            用 2 分钟内完成的护肤动作对应产品「水感美白防晒乳」快速吸收、清爽不粘腻的核心卖点。</p>
+          <p>视觉基调延续本站摄影作品的暗调金色美学：暖色晨光、丝绸质感的产品特写、以及涂抹后皮肤浮现的
+            <strong>半透明金色光膜</strong>作为防晒保护层的隐喻镜头，避免生硬的功效图解。</p>
+          <p>时间翻牌与结尾 Logo 定版两处，不适合用 AI 生成，脚本里改用 ffmpeg 直接生成文字卡片，
+            方案上仍可替换为剪映模板动效。</p>
+        </div>
+      </div>
+      <div class="concept-side">
+        <div class="ps-block">
+          <div class="ps-label">生成模型</div>
+          <div class="ps-items">xAI Grok Imagine（grok-imagine-video）</div>
+        </div>
+        <div class="ps-divider"></div>
+        <div class="ps-block">
+          <div class="ps-label">镜头类型</div>
+          <div class="ps-items">t2v 文生视频 · i2v 图生视频（产品图）· card ffmpeg 文字卡</div>
+        </div>
+        <div class="ps-divider"></div>
+        <div class="ps-block">
+          <div class="ps-label">输出规格</div>
+          <div class="ps-items">720p · 9:16 竖屏 · 去音轨（便于后期统一配乐）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="storyboard">
+  <div class="sec-pad">
+    <div class="sec-head"><span class="sec-index">02</span><span class="sec-title">完整分镜脚本</span><span class="sec-rule"></span></div>
+    <div class="sb-grid">
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">01</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">闹钟 · 晨光特写</span><span class="sb-dur">3s</span></div>
+          <p class="sb-cn">特写镜头，数字闹钟显示 7:50，晨光从左侧斜射入画面，一只女性的手（指甲干净，涂浅色甲油）快速伸入按下闹钟，微焦效果，写实电影质感，暖色调。</p>
+          <p class="sb-en">Close-up, digital alarm clock showing 7:50, morning light from the left, a woman's hand presses the alarm, shallow focus, cinematic realism, warm tones.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">02</div>
+          <div class="sb-kind i2v">i2v · 图生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">产品瓶身旋转展示</span><span class="sb-dur">4s</span></div>
+          <p class="sb-cn">产品缓慢旋转展示，白色瓶身搭配橙色瓶盖，柔光扫过表面高光闪烁，背景白色丝绸质感缓慢流动，商业级摄影布光，慢动作，4K 质感。</p>
+          <p class="sb-en">Product slowly rotating, white bottle with orange cap, soft light sweeping across the surface, flowing white silk background, commercial studio lighting, slow motion.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">03</div>
+          <div class="sb-kind i2v">i2v · 图生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">乳液挤出微距</span><span class="sb-dur">5s</span></div>
+          <p class="sb-cn">白色乳液从瓶口缓缓挤出，落在一只纤细白皙的女性手背上，呈现水润流动质感，微距镜头，高帧率慢动作，光线打出乳液的光泽感。</p>
+          <p class="sb-en">White lotion slowly squeezed from the bottle onto a slender hand, watery fluid texture, macro shot, high frame rate slow motion, glossy sheen.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">04</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">指尖打圈涂抹</span><span class="sb-dur">3s</span></div>
+          <p class="sb-cn">女生用指尖轻轻在脸颊侧面打圈推开乳液，动作轻柔自然，皮肤逐渐呈现自然光泽，特写偏侧脸角度，柔和自然光，画面唯美清新。</p>
+          <p class="sb-en">A woman gently massages lotion onto her cheek in circular motions, skin revealing a natural glow, side-face close-up, soft natural light.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">05</div>
+          <div class="sb-kind">card · 文字卡片</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">时间翻牌</span><span class="sb-dur">3s</span></div>
+          <span class="sb-badge">7:50 → 7:52</span>
+          <p class="sb-cn">ffmpeg 生成的纯色文字卡片，黑底金字，副标题「2 分钟，搞定」，承上启下点出产品「快」的卖点，不调用 AI 生成接口。</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">06</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">金色光膜成膜</span><span class="sb-dur">4s</span></div>
+          <p class="sb-cn">涂抹后的女生手臂/脸颊皮肤表面浮现半透明金色光膜，粒子状光效缓缓扩散包裹皮肤，象征防晒保护层，光效柔和不刺眼，唯美质感。</p>
+          <p class="sb-en">A translucent golden light film emerges on skin after application, particle-like glow spreading to envelop the skin, symbolizing sun protection.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">07</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">转身出门</span><span class="sb-dur">6s</span></div>
+          <p class="sb-cn">年轻女生转身面向镜头微笑，逆光轮廓勾勒发丝光晕，暖色调阳光洒落，肩背包做出门动作，节奏轻快自然。</p>
+          <p class="sb-en">A young woman turns and smiles toward the camera, backlit silhouette with hair glowing at the edges, warm sunlight, heading out.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">08</div>
+          <div class="sb-kind">card · 文字卡片</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">收尾 Logo</span><span class="sb-dur">2s</span></div>
+          <span class="sb-badge">雅丽洁</span>
+          <p class="sb-cn">品牌定版：「雅丽洁」+ 副标「2min，防晒美白都搞定」，同样由 ffmpeg 生成文字卡片，可替换为剪映精修版本。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pipeline">
+  <div class="sec-pad">
+    <div class="sec-head"><span class="sec-index">03</span><span class="sec-title">生成流水线</span><span class="sec-rule"></span></div>
+    <div class="pipe-grid">
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 01</div>
+        <div class="pipe-title">提交生成</div>
+        <div class="pipe-desc">按分镜依次调用 Grok Imagine 接口，t2v 纯文本 Prompt，i2v 附带产品白底图。</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 02</div>
+        <div class="pipe-title">轮询下载</div>
+        <div class="pipe-desc">轮询任务状态直至完成，兼容多种返回字段命名，下载每个镜头的原始 mp4。</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 03</div>
+        <div class="pipe-title">统一规格</div>
+        <div class="pipe-desc">ffmpeg 统一缩放裁切为 720×1280、30fps，去除音轨，避免拼接时编码不一致。</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 04</div>
+        <div class="pipe-title">拼接成片</div>
+        <div class="pipe-desc">按顺序 concat 全部镜头，输出 final_output.mp4，导入剪映统一配乐与字幕。</div>
+      </div>
+    </div>
+    <p class="pipe-note">
+      当前沙盒环境无法访问 <code>api.x.ai</code>，因此本页只呈现分镜与视觉概念，真实生成需在本地环境运行
+      <code>python3 generate_video.py</code>（需设置 <code>XAI_API_KEY</code>），详细步骤见
+      <strong>本地生成说明.md</strong>。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>雅丽洁「水感美白防晒乳」· AIGC Concept Film Demo</span>
+  <span>Storyboard × Grok Imagine × ffmpeg</span>
+</footer>
+
+</body>
+</html>
