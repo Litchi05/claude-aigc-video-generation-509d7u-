@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+shots/
+shots_ur/
+final_output*.mp4
