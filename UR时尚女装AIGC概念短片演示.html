@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UR「都市即秀场」时尚女装 · AIGC 概念短片演示</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5/300.css');
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5/500.css');
+  @import url('https://cdn.jsdelivr.net/npm/@fontsource/cormorant-garamond@5/600.css');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0a0a0b;
+    --bg2:     #0e0e10;
+    --card:    #16161a;
+    --border:  #242428;
+    --border2: #303036;
+    --accent:  #d8d4cc;
+    --accent-dim:#8e8a84;
+    --wine:    #6e3a44;
+    --text:    #f2f0ec;
+    --text-dim:#a5a19a;
+    --muted:   #68645e;
+    --faint:   #3b3833;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+    font-weight: 300; line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: #0a0a0b; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 999; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    opacity: .5;
+  }
+
+  /* ============ HERO ============ */
+  .hero { min-height: 78vh; position: relative; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 75% 30%, rgba(110,58,68,.18), transparent 65%),
+      radial-gradient(ellipse 50% 70% at 15% 80%, rgba(216,212,204,.05), transparent 60%),
+      linear-gradient(165deg, #0c0b0c 0%, #0a0a0b 45%, #0b0b0e 100%);
+  }
+  .hero::before, .hero::after {
+    content: ''; position: absolute; left: 0; right: 0; height: 36px; z-index: 3;
+    background: #000; opacity: .55;
+  }
+  .hero::before { top: 0; } .hero::after { bottom: 0; }
+
+  .hero-inner { position: relative; z-index: 2; padding: 90px 56px 60px; width: 100%; max-width: 1200px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 26px; display: flex; align-items: center; gap: 14px;
+  }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+  .hero h1 { font-size: clamp(32px, 5.2vw, 58px); font-weight: 300; line-height: 1.2; letter-spacing: -.005em; color: var(--text); margin-bottom: 22px; }
+  .hero h1 em { font-style: normal; font-weight: 600; color: var(--accent); }
+  .hero-tagline { font-size: 15px; color: var(--text-dim); max-width: 680px; line-height: 1.95; margin-bottom: 40px; }
+
+  .hero-metrics { display: flex; gap: 44px; flex-wrap: wrap; }
+  .hmetric { display: flex; flex-direction: column; gap: 6px; }
+  .hm-num { font-size: clamp(26px, 3.2vw, 36px); font-weight: 400; line-height: 1; color: var(--accent); }
+  .hm-num i { font-style: normal; font-size: .55em; color: var(--accent-dim); }
+  .hm-label { font-size: 11.5px; letter-spacing: .08em; color: var(--text-dim); }
+
+  /* ============ SECTION FRAME ============ */
+  section { position: relative; }
+  .sec-pad { padding: 90px 56px; max-width: 1200px; margin: 0 auto; }
+  .sec-head { display: flex; align-items: baseline; gap: 24px; margin-bottom: 56px; }
+  .sec-index { font-size: 13px; letter-spacing: .2em; color: var(--accent); font-weight: 400; }
+  .sec-title { font-size: clamp(24px, 3.6vw, 38px); font-weight: 300; color: var(--text); letter-spacing: .01em; }
+  .sec-rule { flex: 1; height: 1px; background: linear-gradient(to right, var(--border2), transparent); margin-left: 16px; align-self: center; }
+
+  /* ============ CONCEPT ============ */
+  .concept { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .concept-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 70px; align-items: start; }
+  .concept-lead { font-size: clamp(18px, 2.2vw, 22px); font-weight: 300; line-height: 1.75; color: var(--text); margin-bottom: 30px; }
+  .concept-lead em { font-style: normal; color: var(--accent); }
+  .concept-body p { font-size: 14.5px; color: var(--text-dim); line-height: 1.95; margin-bottom: 16px; }
+  .concept-body strong { color: var(--text); font-weight: 400; }
+  .concept-side { border-left: 1px solid var(--border); padding-left: 40px; }
+  .ps-block { margin-bottom: 26px; }
+  .ps-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .ps-items { font-size: 13.5px; color: var(--text-dim); line-height: 1.85; }
+  .ps-divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* ============ STORYBOARD ============ */
+  .storyboard { background: var(--bg); }
+  .sb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .sb-card { background: var(--bg); padding: 0; display: flex; flex-direction: column; transition: background .3s; }
+  .sb-card:hover { background: var(--card); }
+  .sb-visual {
+    position: relative; aspect-ratio: 9/16; overflow: hidden;
+    background: linear-gradient(150deg, #16161a, #131015);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  }
+  .sb-visual::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(110deg, transparent 30%, rgba(216,212,204,.08) 50%, transparent 70%);
+    background-size: 200% 100%; opacity: 0; transition: opacity .4s;
+  }
+  .sb-card:hover .sb-visual::after { opacity: 1; animation: shimmer 1.6s ease-in-out infinite; }
+  @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .sb-num { font-size: 42px; font-weight: 300; color: var(--wine); line-height: 1; opacity: .9; }
+  .sb-kind { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+  .sb-kind.t2v, .sb-kind.i2v { color: var(--accent-dim); }
+
+  .sb-body { padding: 22px 24px 26px; border-top: 1px solid var(--border); flex: 1; display: flex; flex-direction: column; gap: 12px; }
+  .sb-title-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .sb-name { font-size: 14px; color: var(--text); letter-spacing: .02em; }
+  .sb-dur { font-size: 11px; letter-spacing: .08em; color: var(--accent); border: 1px solid var(--border2); padding: 3px 9px; white-space: nowrap; }
+  .sb-badge { display: inline-flex; align-self: flex-start; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--border2); padding: 3px 10px; }
+  .sb-cn { font-size: 13px; color: var(--text-dim); line-height: 1.85; }
+  .sb-en { font-size: 12px; color: var(--muted); line-height: 1.75; font-style: italic; }
+
+  /* ============ PIPELINE ============ */
+  .pipeline { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .pipe-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 56px; }
+  .pipe-step { background: var(--bg); padding: 34px 30px; }
+  .pipe-step:hover { background: var(--card); }
+  .pipe-num { font-size: 12px; letter-spacing: .15em; color: var(--accent-dim); margin-bottom: 14px; }
+  .pipe-title { font-size: 16px; font-weight: 400; color: var(--text); margin-bottom: 10px; }
+  .pipe-desc { font-size: 13px; color: var(--text-dim); line-height: 1.8; }
+  .pipe-note { font-size: 13.5px; color: var(--text-dim); line-height: 1.9; max-width: 820px; }
+  .pipe-note code { color: var(--accent); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95em; }
+  .pipe-note strong { color: var(--text); font-weight: 400; }
+
+  footer {
+    padding: 28px 56px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    font-size: 12px; color: var(--muted); letter-spacing: .03em; max-width: 1200px; margin: 0 auto;
+  }
+
+  @media (max-width: 860px) {
+    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+    .concept-side { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 30px; }
+    .pipe-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 520px) {
+    .sec-pad, .hero-inner { padding-left: 24px; padding-right: 24px; }
+    .pipe-grid { grid-template-columns: 1fr; }
+    footer { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AIGC FASHION FILM · DEMO</div>
+    <h1>UR 时尚女装「都市即秀场」<br><em>AIGC 概念短片</em> 分镜演示</h1>
+    <p class="hero-tagline">
+      这是一支完全由 AI 生成分镜构思、并计划通过 xAI Grok Imagine 逐镜头生成的竖屏时装短片提案。
+      本页展示 9 个镜头的完整分镜脚本（中英文 Prompt、镜头类型、时长），
+      对应的一键生成脚本见 <span class="serif" style="color:var(--accent)">generate_video_ur.py</span>。
+    </p>
+    <div class="hero-metrics">
+      <div class="hmetric"><div class="hm-num">9<i>个</i></div><div class="hm-label">分镜镜头</div></div>
+      <div class="hmetric"><div class="hm-num">35<i>s</i></div><div class="hm-label">成片时长</div></div>
+      <div class="hmetric"><div class="hm-num">9:16</div><div class="hm-label">竖屏比例</div></div>
+      <div class="hmetric"><div class="hm-num">7<i>镜</i></div><div class="hm-label">走 Grok Imagine API</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="concept">
+  <div class="sec-pad">
+    <div class="sec-head"><span class="sec-index">01</span><span class="sec-title">创意概念</span><span class="sec-rule"></span></div>
+    <div class="concept-grid">
+      <div>
+        <p class="concept-lead">一座城市，三套造型 —— <em>「都市即秀场」</em>。<br>把 UR 女装的一天穿搭切换，拍成一支街头时装大片。</p>
+        <div class="concept-body">
+          <p>短片以<strong>「清晨通勤 → 黄昏切换 → 夜色登场」</strong>的时间线为结构骨架：城市晨光开场、衣杆选衣、
+            风衣街拍、创意换装转场、缎面夜装、三造型走秀式合集收尾，用一天内的造型流转对应 UR
+            「快时尚 × 轻奢质感」的品牌定位。</p>
+          <p>视觉基调采用黑白极简的高街美学：冷调晨光、面料微距质感、霓虹夜色光斑，其中第 6 镜的
+            <strong>「布料粒子换装转场」</strong>是只有 AIGC 才能低成本实现的超现实镜头，作为全片记忆点。</p>
+          <p>标题卡（ONE CITY / THREE LOOKS）与结尾 Logo 定版两处不适合用 AI 生成，脚本里改用 ffmpeg
+            直接生成黑底白字卡片，方案上仍可替换为剪映模板动效。</p>
+        </div>
+      </div>
+      <div class="concept-side">
+        <div class="ps-block">
+          <div class="ps-label">生成模型</div>
+          <div class="ps-items">xAI Grok Imagine（grok-imagine-video）</div>
+        </div>
+        <div class="ps-divider"></div>
+        <div class="ps-block">
+          <div class="ps-label">镜头类型</div>
+          <div class="ps-items">t2v 文生视频 · i2v 图生视频（服装图 look1/look2，可选）· card ffmpeg 文字卡</div>
+        </div>
+        <div class="ps-divider"></div>
+        <div class="ps-block">
+          <div class="ps-label">输出规格</div>
+          <div class="ps-items">720p · 9:16 竖屏 · 去音轨（便于后期统一配乐）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="storyboard">
+  <div class="sec-pad">
+    <div class="sec-head"><span class="sec-index">02</span><span class="sec-title">完整分镜脚本</span><span class="sec-rule"></span></div>
+    <div class="sb-grid">
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">01</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">城市晨光 · 剪影开场</span><span class="sb-dur">3s</span></div>
+          <p class="sb-cn">都市清晨，玻璃幕墙高楼之间的窄巷，冷调晨光穿过楼宇形成光束，一位年轻女性的剪影拎着风衣快步走过画面，脚步利落，时装大片开场氛围，电影感，浅景深。</p>
+          <p class="sb-en">Urban dawn, light beams between glass skyscrapers, silhouette of a young woman striding past carrying a trench coat, fashion-film opening mood, cinematic.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">02</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">衣杆滑动 · 面料特写</span><span class="sb-dur">4s</span></div>
+          <p class="sb-cn">特写镜头，金属衣杆上的衣架被依次快速拨动滑过，米色风衣、黑色西装、针织衫面料依次划过画面，女性的手指轻轻拂过羊毛面料纹理，质感细腻，商业布光，慢动作收尾。</p>
+          <p class="sb-en">Close-up, hangers sliding fast along a metal rack, fabrics sweeping past, fingers brushing across fine wool texture, commercial lighting, ending in slow motion.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">03</div>
+          <div class="sb-kind i2v">i2v · 图生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">风衣街拍 · 大步走位</span><span class="sb-dur">4s</span></div>
+          <p class="sb-cn">女模特身穿米色长款风衣搭配白色内搭，在城市街头大步走向镜头，低角度仰拍，风衣下摆随步伐摆动，背景虚化的都市街景，高级街拍时尚大片质感，自然日光。（可附 look1.jpg 服装图做图生视频）</p>
+          <p class="sb-en">A model in a long beige trench coat strides toward the camera, low-angle shot, coat hem swinging, blurred urban background, street-style fashion editorial.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">04</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">转身扬摆 · 织纹微距</span><span class="sb-dur">4s</span></div>
+          <p class="sb-cn">女模特原地轻盈转身，衣摆与长发在慢动作中扬起，镜头快速推近到面料的编织纹理与缝线细节，微距质感，光线勾勒面料光泽，时装广告级画面。</p>
+          <p class="sb-en">The model does a light twirl, hem lifting in slow motion, camera pushing in to the weave texture and stitching details, macro feel, fabric sheen.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">05</div>
+          <div class="sb-kind">card · 文字卡片</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">标题卡</span><span class="sb-dur">3s</span></div>
+          <span class="sb-badge">ONE CITY · THREE LOOKS</span>
+          <p class="sb-cn">ffmpeg 生成的黑底白字卡片，副标题「都市即秀场」，承上启下切分「日装 → 夜装」两幕，不调用 AI 生成接口。</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">06</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">粒子换装转场 ★ 记忆点</span><span class="sb-dur">5s</span></div>
+          <p class="sb-cn">创意换装转场：女模特在旋转中，米色风衣通勤装如流动的布料般无缝变化为黑色针织修身连衣裙，布料粒子飘散重组，背景光影同步从白昼变为暖色黄昏，超现实时尚感，丝滑过渡。</p>
+          <p class="sb-en">As the model spins, her trench look seamlessly morphs into a black knit dress, fabric dissolving into particles and re-forming, light shifting from day to dusk.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">07</div>
+          <div class="sb-kind i2v">i2v · 图生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">缎面夜装 · 霓虹回眸</span><span class="sb-dur">4s</span></div>
+          <p class="sb-cn">都市夜景，霓虹与橱窗灯光虚化成光斑，女模特身穿缎面吊带长裙倚靠街边，缎面反射霓虹光泽，回眸看向镜头，眼神自信，夜色时尚氛围大片，电影级打光。（可附 look2.jpg 服装图做图生视频）</p>
+          <p class="sb-en">Urban night, neon bokeh, the model in a satin slip dress leaning by the street, satin catching neon reflections, glancing back with confidence, cinematic lighting.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">08</div>
+          <div class="sb-kind t2v">t2v · 文生视频</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">三造型走秀合集</span><span class="sb-dur">5s</span></div>
+          <p class="sb-cn">快节奏走秀式合集：同一位女模特的三套造型（米色风衣、黑色针织连衣裙、缎面吊带裙）在纯色影棚背景前依次亮相定格，每次定格伴随灯光频闪，最后面向镜头自信微笑，双手插兜,时尚杂志封面感。</p>
+          <p class="sb-en">Runway-style fast montage: three looks posing in sequence against a studio backdrop, strobe light on each freeze, ending with a confident smile at the camera.</p>
+        </div>
+      </div>
+
+      <div class="sb-card">
+        <div class="sb-visual">
+          <div class="sb-num">09</div>
+          <div class="sb-kind">card · 文字卡片</div>
+        </div>
+        <div class="sb-body">
+          <div class="sb-title-row"><span class="sb-name">收尾 Logo</span><span class="sb-dur">3s</span></div>
+          <span class="sb-badge">URBAN REVIVO</span>
+          <p class="sb-cn">品牌定版：「URBAN REVIVO」+ 副标「新装上市 · 都市即秀场」，同样由 ffmpeg 生成黑底白字卡片，可替换为剪映精修版本。</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pipeline">
+  <div class="sec-pad">
+    <div class="sec-head"><span class="sec-index">03</span><span class="sec-title">生成流水线</span><span class="sec-rule"></span></div>
+    <div class="pipe-grid">
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 01</div>
+        <div class="pipe-title">提交生成</div>
+        <div class="pipe-desc">按分镜依次调用 Grok Imagine 接口，t2v 纯文本 Prompt，i2v 可附带 look1/look2 服装图。</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 02</div>
+        <div class="pipe-title">轮询下载</div>
+        <div class="pipe-desc">轮询任务状态直至完成，兼容多种返回字段命名，下载每个镜头的原始 mp4。</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 03</div>
+        <div class="pipe-title">统一规格</div>
+        <div class="pipe-desc">ffmpeg 统一缩放裁切为 720×1280、30fps，去除音轨，避免拼接时编码不一致。</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-num">STEP 04</div>
+        <div class="pipe-title">拼接成片</div>
+        <div class="pipe-desc">按顺序 concat 全部镜头，输出 final_output_ur.mp4，导入剪映统一配乐与字幕。</div>
+      </div>
+    </div>
+    <p class="pipe-note">
+      当前沙盒环境无法访问 <code>api.x.ai</code>，因此本页只呈现分镜与视觉概念，真实生成需在本地环境运行
+      <code>python3 generate_video_ur.py</code>（需设置 <code>XAI_API_KEY</code>），详细步骤见
+      <strong>UR短片本地生成说明.md</strong>。
+    </p>
+  </div>
+</section>
+
+<footer>
+  <span>UR「都市即秀场」时尚女装 · AIGC Fashion Film Demo</span>
+  <span>Storyboard × Grok Imagine × ffmpeg</span>
+</footer>
+
+</body>
+</html>
